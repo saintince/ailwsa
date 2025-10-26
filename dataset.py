@@ -1,9 +1,7 @@
 import os
-import cv2
 import torch
-from torch.utils.data import Dataset, DataLoader
-from torchvision import transforms
 from PIL import Image
+from torch.utils.data import Dataset
 
 
 class UTKFaceDataset(Dataset):
@@ -29,6 +27,8 @@ class UTKFaceDataset(Dataset):
 
         age = torch.tensor(float(age))
         gender = torch.tensor(int(gender))
+        # height = torch.tensor(float(height))
+        # weight = torch.tensor(float(weight))
 
         return image, age, gender
 
