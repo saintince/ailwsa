@@ -35,3 +35,21 @@ class InfoNet(nn.Module):
             'age': age,
             'gender': gender
         }
+
+class InfoNet2(InfoNet):
+    def __init__(self):
+        super(InfoNet2, self).__init__()
+        self.height = nn.Linear(128, 1)
+        self.weight = nn.Linear(128, 1)
+
+    def forward(self, x):
+        base_out = super().forward(x)
+        x = f.relu(self.fc1(x))
+        height = self.height(x)
+        weight = self.weight(x)
+        return {
+            'age': base_out['age'],
+            'gender': base_out['gender'],
+            'height': height,
+            'weight': weight
+        }
